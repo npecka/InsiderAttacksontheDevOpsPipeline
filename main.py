@@ -33,10 +33,12 @@ if __name__ == "__main__":
         else:
             print("Incorrect value for producer or consumer")
 
+    # Multiprocess setup notes ...
     #proc1 = mp.Process(target=c_create, args=["c1"])
     #proc1.start()
     #proc1.join()
 
+    # Timing work ...
     #d = {}
     #start_time = time.time()
     #for i in range(1, 2000):
@@ -44,5 +46,3 @@ if __name__ == "__main__":
     #    d["proc{0}".format(i)].start()
     #    print(i)
     #print("--- %s seconds ---" % (time.time() - start_time))
-    #t2 = threading.Thread(c_local_create("t2", "test-topic"))
-    #t2.start()

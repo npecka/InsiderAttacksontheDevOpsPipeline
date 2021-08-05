@@ -1,5 +1,4 @@
 import ssl
-import kafka
 from kafka import KafkaProducer
 from kafka import KafkaConsumer
 
