@@ -1,0 +1,6 @@
+# Pycharm IDEA specific
+.idea/
+*.iml
+
+# Pycharm virtual environment
+/venv
