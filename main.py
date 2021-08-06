@@ -14,7 +14,7 @@ if __name__ == "__main__":
         val = input("Would you like to produce or consume (enter 'p' or 'c'): ")
         if val == "p" or val == "c":
             use_ssl = input("Does the bootstrap use SASL/SSL? (enter 'yes' or 'no'): ")
-            bootstrap_servers = input("Please input bootstrap servers (ex. localhost:9092): ")
+            bootstrap_servers = input("Please input bootstrap servers (ex. localhost:9092 or if in a docker container host.docker.internal:9092): ")
             client_id = input("Please input a client id: ")
             topic = input("Enter a topic name: ")
             if use_ssl == "yes":
