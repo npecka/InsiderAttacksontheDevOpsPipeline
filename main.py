@@ -2,8 +2,8 @@ import threading
 
 from producer import producer_create
 from producer import p_create
-from producer import consumer_create
-from producer import c_create
+from consumer import consumer_create
+from consumer import c_create
 
 if __name__ == "__main__":
 
