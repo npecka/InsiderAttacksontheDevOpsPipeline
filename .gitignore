@@ -4,3 +4,4 @@
 
 # Pycharm virtual environment
 /venv
+/__pycache__
