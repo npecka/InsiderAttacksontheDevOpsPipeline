@@ -42,3 +42,8 @@ def my_form_post():
     list_to_str = ' '.join(map(str, producer_consumer_list))
 
     return list_to_str
+
+
+if __name__ == '__main__':
+    app.run(debug=True, host='0.0.0.0')
+
