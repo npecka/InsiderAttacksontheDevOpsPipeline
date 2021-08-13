@@ -25,7 +25,12 @@ def consumer_create(topic="", bootstrap_servers="", client_id="", security_proto
 
 
 def c_create(thread_name):
+    list_of_messages = []
     for message in thread_name:
-        print("%s:%d:%d: key=%s value=%s" % (message.topic, message.partition,
-                                             message.offset, message.key,
-                                             message.value))
+        list_of_messages.append(message.value)
+    return list_of_messages
+
+# Reference notes for consumer message
+# print("%s:%d:%d: key=%s value=%s" % (message.topic, message.partition,
+#                                     message.offset, message.key,
+#                                     message.value))

@@ -22,6 +22,8 @@ def producer_create(bootstrap_servers="", client_id="", security_protocol="PLAIN
 
 
 def p_create(thread_name, topic_name, num_of_messages):
+    list_of_messages = []
     for j in range(1, num_of_messages):
         thread_name.send(topic_name, b'%d' % j)
-        print(j)
+        list_of_messages.append(j)
+    return list_of_messages
