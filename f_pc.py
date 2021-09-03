@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, jsonify
 from producer import producer_create
 from producer import p_create
 from consumer import consumer_create
@@ -69,7 +69,7 @@ def api_form_post():
 
     list_to_str = ' '.join(map(str, producer_consumer_list))
 
-    return list_to_str
+    return jsonify(list_to_str), 201
 
 
 if __name__ == '__main__':
