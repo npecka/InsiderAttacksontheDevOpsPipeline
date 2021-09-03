@@ -46,6 +46,32 @@ def my_form_post():
     return list_to_str
 
 
+@app.route('/api', methods=['POST'])
+def api_form_post():
+    kafka_task = {
+        'sslchoice': request.json['sslchoice'],
+        'porc': request.json['porc'],
+        'messages': request.json['messages'],
+        'bserver': request.json['bserver'],
+        'clientid': request.json['clientid'],
+        'topic': request.json['topic']
+        }
+
+    if kafka_task.get('porc') == 'p':
+        if kafka_task.get('sslchoice') == 'yes':
+            producer = producer_create(kafka_task.get('bserver'), kafka_task.get('clientid'),
+                                       kafka_task.get('sprotocol'), kafka_task.get('smechanism'),
+                                       kafka_task.get('suser'), kafka_task.get('spass'))
+        else:
+            producer = producer_create(kafka_task.get('bserver'), kafka_task.get('clientid'))
+
+        producer_consumer_list = p_create(producer, kafka_task.get('topic'), int(kafka_task.get('messages')))
+
+    list_to_str = ' '.join(map(str, producer_consumer_list))
+
+    return list_to_str
+
+
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')
 
