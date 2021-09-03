@@ -67,6 +67,16 @@ def api_form_post():
 
         producer_consumer_list = p_create(producer, kafka_task.get('topic'), int(kafka_task.get('messages')))
 
+    else:
+        if kafka_task.get('sslchoice') == 'yes':
+            consumer = consumer_create(kafka_task.get('topic'), kafka_task.get('bserver'), kafka_task.get('clientid'),
+                                       kafka_task.get('sprotocol'), kafka_task.get('smechanism'),
+                                       kafka_task.get('suser'), kafka_task.get('spass'))
+        else:
+            consumer = consumer_create(kafka_task.get("topic"), kafka_task.get("bserver"), kafka_task.get("clientid"))
+
+        producer_consumer_list = c_create(consumer)
+
     list_to_str = ' '.join(map(str, producer_consumer_list))
 
     return jsonify(list_to_str), 201
