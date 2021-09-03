@@ -3,6 +3,7 @@ from producer import producer_create
 from producer import p_create
 from consumer import consumer_create
 from consumer import c_create
+from kafka.admin import KafkaAdminClient, NewTopic
 
 app = Flask(__name__)
 
@@ -22,6 +23,12 @@ def my_form_post():
     smechanism = request.form['smechanism']
     suser = request.form['suser']
     spass = request.form['spass']
+
+    admin_client = KafkaAdminClient(bootstrap_servers=bserver,
+                                    clientid=clientid)
+
+    topic_create = [NewTopic(name=test-topic, num_partitions=1, replication_factor=1)]
+    admin_client.create_topics(new_topics=topic_create, validate_only=False)
 
     if porc == 'p':
         if sslchoice == 'yes':
