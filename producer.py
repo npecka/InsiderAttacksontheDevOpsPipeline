@@ -27,3 +27,10 @@ def p_create(thread_name, topic_name, num_of_messages):
         thread_name.send(topic_name, b'%d' % j)
         list_of_messages.append(j)
     return list_of_messages
+
+
+def pp_create(thread_name, topic_name, message):
+    list_of_messages = []
+    thread_name.send(topic_name, b'This is a secret message containing a password: PA$$W0RD for user: TesTUseR')
+    list_of_messages.append(message)
+    return list_of_messages

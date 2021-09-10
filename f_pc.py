@@ -1,6 +1,7 @@
 from flask import Flask, request, render_template, jsonify
 from producer import producer_create
 from producer import p_create
+from producer import pp_create
 from consumer import consumer_create
 from consumer import c_create
 
@@ -31,7 +32,7 @@ def my_form_post():
         else:
             producer = producer_create(bserver, clientid)
 
-        producer_consumer_list = p_create(producer, topic, int(messages))
+        producer_consumer_list = pp_create(producer, topic, messages)
 
     else:
         if sslchoice == 'yes':
@@ -48,6 +49,7 @@ def my_form_post():
 
 @app.route('/api', methods=['POST'])
 def api_form_post():
+    print("starting api")
     kafka_task = {
         'sslchoice': request.json['sslchoice'],
         'porc': request.json['porc'],
@@ -57,6 +59,7 @@ def api_form_post():
         'topic': request.json['topic']
         }
 
+    print("about to start creating p or c")
     if kafka_task.get('porc') == 'p':
         if kafka_task.get('sslchoice') == 'yes':
             producer = producer_create(kafka_task.get('bserver'), kafka_task.get('clientid'),
@@ -68,18 +71,20 @@ def api_form_post():
         producer_consumer_list = p_create(producer, kafka_task.get('topic'), int(kafka_task.get('messages')))
 
     else:
+        print("Entering consumer")
         if kafka_task.get('sslchoice') == 'yes':
             consumer = consumer_create(kafka_task.get('topic'), kafka_task.get('bserver'), kafka_task.get('clientid'),
                                        kafka_task.get('sprotocol'), kafka_task.get('smechanism'),
                                        kafka_task.get('suser'), kafka_task.get('spass'))
         else:
+            print("about to create consumer")
             consumer = consumer_create(kafka_task.get("topic"), kafka_task.get("bserver"), kafka_task.get("clientid"))
 
         producer_consumer_list = c_create(consumer)
 
     list_to_str = ' '.join(map(str, producer_consumer_list))
 
-    return jsonify(list_to_str), 201
+    return list_to_str
 
 
 if __name__ == '__main__':
