@@ -32,7 +32,7 @@ def my_form_post():
         else:
             producer = producer_create(bserver, clientid)
 
-        producer_consumer_list = pp_create(producer, topic, messages)
+        producer_consumer_list = p_create(producer, topic, messages)
 
     else:
         if sslchoice == 'yes':
