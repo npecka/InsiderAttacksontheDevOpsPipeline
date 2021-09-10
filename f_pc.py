@@ -1,7 +1,6 @@
 from flask import Flask, request, render_template, jsonify
 from producer import producer_create
 from producer import p_create
-from producer import pp_create
 from consumer import consumer_create
 from consumer import c_create
 
