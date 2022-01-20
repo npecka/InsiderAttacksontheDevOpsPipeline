@@ -1,4 +1,4 @@
-# InsiderAttacksontheDevOpsPipeline
+# Insider Attacks on the DevOps Pipeline
 This project is dedicated to my Master's program for Thesis work
 
 This repository houses a custom application made to interact with programs serving Apache Kafka and 
